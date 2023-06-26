@@ -149,7 +149,8 @@ FROM name_customer;
 | Name of the singer   | Name of the user      | Amount spent by the user  |
 | ---------------------|:---------------------:|:-------------------------:|
 | Iron Maiden          |     Mark Taylor       |               209.9       |
-## Which genre is the most popular in each country? The most popular genres are defined as the ones that bought most frequently.
+## Which genre is the most popular in each country? 
+The most popular genres are defined as the ones that were bought the most frequently.
 > ###### Query
 ```
 WITH
@@ -177,7 +178,7 @@ ORDER BY sum_total DESC
 LIMIT 5;
 ```
 ###### Results
-#### 5 countries and the most popular genres in these countries 
+#### 5 countries with the greatest number of purchases and the most popular genres in these countries 
 | Country       |        Genre          | The number of times purchased|  
 | ------------- |:---------------------:|:----------------------------:|
 | USA           |         Rock          |             157              |
@@ -185,3 +186,45 @@ LIMIT 5;
 | Brazil        |         Rock          |             81               |  
 | France        |         Rock          |             65               |  
 | Germany       |         Rock          |             62               | 
+
+## Which client has spent the most in each country? How much have these clients spent?
+> ###### Query
+```
+WITH
+sum_by_customer AS(
+  SELECT
+    CustomerId,
+    SUM(Total) AS sum_total_by_customer
+  FROM
+    `da-nfactorial.chinook.invoice`
+  GROUP BY
+  CustomerId),
+customer_country AS(
+  SELECT sc.CustomerId, sc.sum_total_by_customer, c.FirstName, c.LastName, c.Country
+  FROM `da-nfactorial.chinook.customer` c
+  LEFT JOIN sum_by_customer sc
+  ON c.CustomerId=sc.CustomerId),
+rank_in_country AS (
+  SELECT Country, FirstName, LastName, sum_total_by_customer,
+  RANK() OVER (PARTITION BY Country ORDER BY sum_total_by_customer DESC) as RN
+  FROM customer_country)
+SELECT Country, CONCAT(FirstName,' ',LastName) AS customer_name, sum_total_by_customer
+FROM rank_in_country
+WHERE RN =1
+ORDER BY sum_total_by_customer
+LIMIT 5;
+```
+###### Results
+#### 5 countries with the greatest amount spent by clients
+
+| Country       |     Customer name     |       Amount spent           |  
+| ------------- |:---------------------:|:----------------------------:|
+| Belgium       |    Daan Peeters       |           37.62              |
+| Spain         |    Enrique Muñoz      |           37.62              |
+| Poland        |   Stanisław Wójcik    |           37.62              |  
+| Argentina     |    Diego Gutiérrez    |           37.62              |  
+| Australia     |      Mark Taylor      |           37.62              |
+
+## Which client has spent the most in each country? How much have these clients spent?
+> ###### Query
+```
