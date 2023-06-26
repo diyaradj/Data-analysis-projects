@@ -196,12 +196,12 @@ sum_by_customer AS(
     CustomerId,
     SUM(Total) AS sum_total_by_customer
   FROM
-    `da-nfactorial.chinook.invoice`
+    `chinook.invoice`
   GROUP BY
   CustomerId),
 customer_country AS(
   SELECT sc.CustomerId, sc.sum_total_by_customer, c.FirstName, c.LastName, c.Country
-  FROM `da-nfactorial.chinook.customer` c
+  FROM `chinook.customer` c
   LEFT JOIN sum_by_customer sc
   ON c.CustomerId=sc.CustomerId),
 rank_in_country AS (
@@ -225,6 +225,89 @@ LIMIT 5;
 | Argentina     |    Diego Gutiérrez    |           37.62              |  
 | Australia     |      Mark Taylor      |           37.62              |
 
-## Which client has spent the most in each country? How much have these clients spent?
+## What are the top 10 albums by sales? How much did they earn?
 > ###### Query
 ```
+WITH
+total_by_trackid AS(
+  SELECT TrackId, SUM(UnitPrice*Quantity) AS Total_earned
+  FROM `chinook.invoiceline`
+  GROUP BY TrackId
+), 
+album_data AS(
+SELECT Title AS album_title, t.TrackId, Total_earned
+FROM
+`chinook.album` alb
+INNER JOIN
+`chinook.track` t 
+ON
+  alb.AlbumId=t.AlbumId
+INNER JOIN
+total_by_trackid tt 
+ON
+  t.TrackId=tt.TrackId
+),
+sum_of_total AS(
+  SELECT album_title, SUM(Total_earned) AS sum_by_album
+  FROM album_data
+  GROUP BY album_title)
+SELECT album_title, sum_by_album
+FROM sum_of_total
+ORDER BY sum_by_album DESC
+LIMIT 10;
+```
+###### Results
+
+## What is the share of each media type in total sales?
+> ###### Query
+```
+WITH
+total_by_trackid AS(
+  SELECT TrackId, SUM(UnitPrice*Quantity) AS Total_earned
+  FROM `da-nfactorial.chinook.invoiceline`
+  GROUP BY TrackId
+), 
+media_data AS(
+SELECT md.MediaTypeId, md.Name AS media_name, Total_earned, t.TrackId
+FROM
+`chinook.mediatype` md
+INNER JOIN
+`chinook.track` t 
+ON
+  md.MediaTypeId=t.MediaTypeId
+INNER JOIN
+total_by_trackid tt
+ON
+  t.TrackId=tt.TrackId
+),
+total_sum AS ( 
+  SELECT SUM(Total_earned) AS final_sum
+  FROM media_data),
+sum_of_total_by_media AS(
+  SELECT media_name, SUM(Total_earned) AS sum_by_media
+  FROM media_data
+  GROUP BY media_name)
+SELECT media_name, (sum_by_media/(SELECT final_sum FROM total_sum))*100 AS media_share_in_percent
+FROM sum_of_total_by_media
+ORDER BY media_share_in_percent DESC;
+```
+###### Results
+
+## Top 10 US states by sales
+> ###### Query
+```
+WITH us_data AS(
+  SELECT c.Country, c.State, i.Total
+  FROM `chinook.customer` c
+  INNER JOIN
+  `chinook.invoice` i 
+  ON
+  c.CustomerId=i.CustomerId
+  WHERE c.Country='USA')
+SELECT State, ROUND(SUM(Total),2) AS sum_by_state
+FROM us_data
+GROUP BY State
+ORDER BY sum_by_state DESC
+LIMIT 10;
+```
+###### Results
