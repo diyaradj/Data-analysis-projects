@@ -9,6 +9,13 @@ In this project I analyze effectiveness of three ad campaigns. The data contains
 - leads,
 - sales,
 - revenue.
+## Information on ad campaigns
+| Ad campaign   | Total spent on ad | Total sales | Total revenue | Impressions | Clicks | Visits | Leads |   
+| ------------- |:-----------------:|:-----------:|:-------------:|:-----------:|:------:|:------:|:-----:|
+| Campaign # 1  |        9000       |     907     |      7969     |    993420   |  19601 |  18607 | 1796  |
+| Campaign # 2  |        4892       |     295     |      13476    |    247809   |  2621  |  2486  |  497  |    
+| Campaign # 3  |        13777      |    1558     |     21016     |    997628   |  15651 |  14911 | 2176  |
+
 ## Estimating marketing KPIs of each campaign
 - CPM - Cost per mille
 - CPC - Cost per Click
@@ -18,7 +25,7 @@ In this project I analyze effectiveness of three ad campaigns. The data contains
 - CPS - Cost per Sale
 - CAC - Customer Acquisition Cost
 - ROMI - Return on Marketing Investment
-#  Average marketing KPIs for the period
+##  Average marketing KPIs for the period
 | Ad campaign   | Cost per mille | Cost per Click | Click-through rate | Cost per Visit | Cost per Lead |     
 | ------------- |:--------------:|:--------------:|:------------------:|:--------------:|:-------------:|
 | Campaign # 1  |       9.2      |        0.5     |          2%        |       0.5      |      5.1      |   
@@ -28,5 +35,8 @@ In this project I analyze effectiveness of three ad campaigns. The data contains
 | Ad campaign   | Cost per Sale | Customer Acquisition Cost | Return on Marketing Investment |
 |:-------------:|:-------------:|:-------------------------:|:------------------------------:|
 | Campaign # 1  |     10.8      |             12.7          |              -10.8%            |
-| Campaign # 2  | 17.7   |   19.5   |   180%   |
-| Campaign # 3  | 9     |   11.2   |   53.6%  |
+| Campaign # 2  |     17.7      |             19.5          |                180%            |
+| Campaign # 3  |       9       |             11.2          |               53.6%            |
+
+## Insights:
+- Campaign 1
