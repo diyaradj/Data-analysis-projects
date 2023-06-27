@@ -39,4 +39,10 @@ In this project I analyze effectiveness of three ad campaigns. The data contains
 | Campaign # 3  |       9       |             11.2          |               53.6%            |
 
 ## Insights:
-- Campaign 1
+- The greatest amount of money was spent on ad campaign #3, but as a result of ad campaign #1 there was the greatest number of website visits and clicks, so campaign #1 has the highest click-through rate (CTR). On the other hand, ad campaign #3 has resulted in the highest sales among the three campaigns. So users of campaign #1 visited the website the most frequently but they bought less than users of campaign #3. <ins>So campaign #1 has a lower conversion rate of visits and clicks into sales than campaign #3. </ins>
+- Ad campaign #2 has the highest cost-per-mille, -click, -visit, -lead, -sale and the highest customer acquisition costs. At the same time, revenue as a result of campaign #2 is twice as high as revenue as a result of campaign #1. <ins> It can be the case that an average receipt of a user of campaign #2 is significantly higher than average receipt of a user of campaign #1. </ins>
+- Ad campaign #3 has the highest marketing costs, but the highest number of leads, sales and revenue. <ins> So users of campaign #3 visit the website and make purchases. </ins>
+- In order to determine  the most efficient ad campaign among the three campaigns in this project I use ROMI indicator. <ins> Ad campaign # 2 is the most efficient since it has the highest ROMI.</ins> So given relatively low marketing expenses on campaign # 2, it generates relatively high revenue.
+## Recommendation to the marketing department:
+I would recommend to the marketing department to alter the ad campaign #1 since it has negative ROMI. Campaign #1 has a high number of clicks and visits, but high marketing expenses are not justified since revenue as a result of campaign #1 is lower than revenue of other campaigns.
+
