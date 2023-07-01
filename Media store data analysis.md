@@ -311,4 +311,4 @@ ORDER BY sum_by_state DESC
 LIMIT 10;
 ```
 ###### Results
-<a href="top10_albums.png"><img src="top10_albums.png" style="min-width: 300px"></a>
+<a href="top10_states.png"><img src="top10_states.png" style="min-width: 300px"></a>
