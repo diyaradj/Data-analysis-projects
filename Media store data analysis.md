@@ -312,3 +312,38 @@ LIMIT 10;
 ```
 ###### Results
 <a href="top10_states.png"><img src="top10_states.png" style="min-width: 300px"></a>
+## Share of each media type in sales
+> ###### Query
+```
+WITH
+total_by_trackid AS(
+  SELECT TrackId, SUM(UnitPrice*Quantity) AS Total_earned
+  FROM `da-nfactorial.chinook.invoiceline`
+  GROUP BY TrackId
+), 
+media_data AS(
+SELECT md.MediaTypeId, md.Name AS media_name, Total_earned, t.TrackId
+FROM
+`da-nfactorial.chinook.mediatype` md
+INNER JOIN
+`da-nfactorial.chinook.track` t 
+ON
+  md.MediaTypeId=t.MediaTypeId
+INNER JOIN
+total_by_trackid tt
+ON
+  t.TrackId=tt.TrackId
+),
+total_sum AS ( 
+  SELECT SUM(Total_earned) AS final_sum
+  FROM media_data),
+sum_of_total_by_media AS(
+  SELECT media_name, SUM(Total_earned) AS sum_by_media
+  FROM media_data
+  GROUP BY media_name)
+SELECT media_name, (sum_by_media/(SELECT final_sum FROM total_sum))*100 AS media_share_in_percent
+FROM sum_of_total_by_media
+ORDER BY media_share_in_percent DESC;
+```
+###### Results
+<a href="share of each media type.png"><img src="share of each media type.png" style="min-width: 300px"></a>
