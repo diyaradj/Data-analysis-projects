@@ -292,7 +292,7 @@ FROM sum_of_total_by_media
 ORDER BY media_share_in_percent DESC;
 ```
 ###### Results
-
+<a href="top10_albums.png"><img src="top10_albums.png" style="min-width: 300px"></a>
 ## Top 10 US states by sales
 > ###### Query
 ```
