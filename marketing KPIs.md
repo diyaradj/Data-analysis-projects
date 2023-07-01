@@ -45,4 +45,6 @@ In this project I analyze effectiveness of three ad campaigns. The data contains
 - In order to determine  the most efficient ad campaign among the three campaigns in this project I use ROMI indicator. <ins> Ad campaign # 2 is the most efficient since it has the highest ROMI.</ins> So given relatively low marketing expenses on campaign # 2, it generates relatively high revenue.
 ## Recommendation to the marketing department:
 I would recommend to the marketing department to alter the ad campaign #1 since it has negative ROMI. Campaign #1 has a high number of clicks and visits, but high marketing expenses are not justified since revenue as a result of campaign #1 is lower than revenue of other campaigns.
-
+### Vizualization to this analysis can be found on Tableau:
+[public.tableau.com/app/profile/di1230](https://public.tableau.com/app/profile/di1230)
+<a href="Dashboard marketing kpi.png"><img src="Dashboard marketing kpi.png" style="min-width: 500px"></a>
