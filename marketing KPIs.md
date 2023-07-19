@@ -47,4 +47,4 @@ In this project I analyze effectiveness of three ad campaigns. The data contains
 I would recommend to the marketing department to alter the ad campaign #1 since it has negative ROMI. Campaign #1 has a high number of clicks and visits, but high marketing expenses are not justified since revenue as a result of campaign #1 is lower than revenue of other campaigns.
 ### Vizualization to this analysis can be found on Tableau:
 [public.tableau.com/app/profile/di1230](https://public.tableau.com/app/profile/di1230)
-<a href="Dashboard marketing kpi.png"><img src="Dashboard marketing kpi.png" style="min-width: 500px"></a>
+<a href="Dashboard marketing kpi.png"><img src="images/Dashboard marketing kpi.png" style="min-width: 500px"></a>
