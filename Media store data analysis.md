@@ -292,7 +292,7 @@ FROM sum_of_total_by_media
 ORDER BY media_share_in_percent DESC;
 ```
 ###### Results
-<a href="top10_albums.png"><img src="top10_albums.png" style="min-width: 300px"></a>
+<a href="top10_albums.png"><img src="images/top10_albums.png" style="min-width: 300px"></a>
 ## Top 10 US states by sales
 > ###### Query
 ```
@@ -311,7 +311,7 @@ ORDER BY sum_by_state DESC
 LIMIT 10;
 ```
 ###### Results
-<a href="top10_states.png"><img src="top10_states.png" style="min-width: 300px"></a>
+<a href="top10_states.png"><img src="images/top10_states.png" style="min-width: 300px"></a>
 ## Share of each media type in sales
 > ###### Query
 ```
@@ -346,4 +346,4 @@ FROM sum_of_total_by_media
 ORDER BY media_share_in_percent DESC;
 ```
 ###### Results
-<a href="share of each media type.png"><img src="share of each media type.png" style="min-width: 300px"></a>
+<a href="share of each media type.png"><img src="images/share of each media type.png" style="min-width: 300px"></a>
