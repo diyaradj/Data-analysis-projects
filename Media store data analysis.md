@@ -257,41 +257,6 @@ ORDER BY sum_by_album DESC
 LIMIT 10;
 ```
 ###### Results
-
-## What is the share of each media type in total sales?
-> ###### Query
-```
-WITH
-total_by_trackid AS(
-  SELECT TrackId, SUM(UnitPrice*Quantity) AS Total_earned
-  FROM `da-nfactorial.chinook.invoiceline`
-  GROUP BY TrackId
-), 
-media_data AS(
-SELECT md.MediaTypeId, md.Name AS media_name, Total_earned, t.TrackId
-FROM
-`chinook.mediatype` md
-INNER JOIN
-`chinook.track` t 
-ON
-  md.MediaTypeId=t.MediaTypeId
-INNER JOIN
-total_by_trackid tt
-ON
-  t.TrackId=tt.TrackId
-),
-total_sum AS ( 
-  SELECT SUM(Total_earned) AS final_sum
-  FROM media_data),
-sum_of_total_by_media AS(
-  SELECT media_name, SUM(Total_earned) AS sum_by_media
-  FROM media_data
-  GROUP BY media_name)
-SELECT media_name, (sum_by_media/(SELECT final_sum FROM total_sum))*100 AS media_share_in_percent
-FROM sum_of_total_by_media
-ORDER BY media_share_in_percent DESC;
-```
-###### Results
 <a href="top10_albums.png"><img src="images/top10_albums.png" style="min-width: 300px"></a>
 ## Top 10 US states by sales
 > ###### Query
