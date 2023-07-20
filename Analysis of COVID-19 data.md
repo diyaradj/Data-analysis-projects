@@ -245,4 +245,4 @@ ORDER BY nf.date DESC
 LIMIT 1;
 ```
 ###### Results
-<a href="forecast of new covid tests for the United Kingdom for the next 5 days.png"><img src="images for COVID-19 analysis/forecast of new covid tests for the United Kingdom for the next 5 days.png" style="min-width: 300px"></a>
+<a href="forecast of new covid tests for the United Kingdom.png"><img src="images for COVID-19 analysis/forecast of new covid tests for the United Kingdom.png" style="min-width: 300px"></a>
