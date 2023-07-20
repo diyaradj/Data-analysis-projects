@@ -199,4 +199,24 @@ ORDER BY rel_diff DESC
 LIMIT 10; 
 ```
 ###### Results
-<a href="top10_states.png"><img src="images for COVID-19 analysis/relative increase in the number of vaccinated people.png" style="min-width: 300px"></a>
+<a href="relative increase in the number of vaccinated people.png"><img src="images for COVID-19 analysis/relative increase in the number of vaccinated people.png" style="min-width: 300px"></a>
+##### Question 9: Next, I investigate whether there is relationship between population density and share of infected people in countries
+> ###### Query
+```
+WITH cte AS(
+SELECT r.location, c.iso_code, 
+SUM(c.new_cases) AS all_cases
+FROM `da-nfactorial.covid19.cases` c
+INNER JOIN `da-nfactorial.covid19.regions` r
+ON c.iso_code=r.iso_code
+GROUP BY c.iso_code, r.location)
+SELECT location, 
+ROUND((all_cases/d.population)*100,2) AS prob_ill, d. population_density
+FROM cte cc
+INNER JOIN `da-nfactorial.covid19.demography` d
+ON cc.iso_code=d.iso_code 
+ORDER BY prob_ill DESC;  
+```
+###### Results
+<a href="relationship between population density and share of infected people in countries.png"><img src="images for COVID-19 analysis/relationship between population density and share of infected people in countries.png" style="min-width: 300px"></a>
+As described in the graph, there is no obvious relationship between population density and share of infected people in countries.
