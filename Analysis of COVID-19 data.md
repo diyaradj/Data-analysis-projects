@@ -151,6 +151,8 @@ FROM cte
 ORDER BY location, date; 
 ```
 ###### Results
+<a href="question 5 results.png"><img src="images for COVID-19 analysis/question 5 results.png" style="min-width: 300px"></a>
+
 ##### Question 6: Which countries in the dataset had the highest mortality rate during COVID-19?
 > ###### Query
 ```
@@ -170,6 +172,8 @@ WHERE rn <=25
 ORDER BY rn; 
 ```
 ###### Results
+<a href="question 6 results.png"><img src="images for COVID-19 analysis/question 6 results.png" style="min-width: 300px"></a>
+
 ##### Question 7: Forecasting the number of new cases for the next five days.      
 I estimate the growth factor of new cases for day N as=the number of new cases for day N/the number of new cases for day (N-1).
 For more precise estimation I take average value of the growth factor for the last 10 days.
@@ -194,6 +198,8 @@ FROM nfact nf
 ORDER BY nf.date DESC; 
 ```
 ###### Results
+<a href="question 7 results.png"><img src="images for COVID-19 analysis/question 7 results.png" style="min-width: 300px"></a>
+
 ##### Question 8: Which countries had the highest increase in the vaccination rate for COVID-19?
 > ###### Query
 ```
