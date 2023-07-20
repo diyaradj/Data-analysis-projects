@@ -76,79 +76,31 @@ HAVING SUM(Total) =
 ## Who is the singer who has earned the most and who is the user that has spent the most on this singer?
 > ###### Query
 ```
-WITH
-invoice_line AS (
-  SELECT InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity 
-  FROM
- `chinook.invoiceline`
-),
-track AS (
-   SELECT TrackId, AlbumId
-  FROM `chinook.track`
-),
-album AS (
-  SELECT AlbumId, ArtistId
-  FROM `chinook.album`
-),
-artist AS (
-  SELECT ArtistId, Name
-  FROM `chinook.artist`
-),
-artist_data AS (
-  SELECT il.InvoiceLineId, il.InvoiceId, il.TrackId, 
-  t.AlbumId, alb.ArtistId, art.Name, UnitPrice, Quantity
-  FROM invoice_line il
-  INNER JOIN track t
-  ON il.TrackId=t.TrackId
-  INNER JOIN album alb
-  ON t.AlbumId=alb.AlbumId
-  INNER JOIN artist art
-  ON alb.ArtistId=art.ArtistId
-  ),
- --look for name of artist with max earnings
-name_artist AS(
-  SELECT Name, SUM(UnitPrice*Quantity) AS sum_total
-  FROM artist_data
-  GROUP BY Name
-  HAVING SUM(UnitPrice*Quantity) = 
-   (SELECT MAX(sum_total) 
-    FROM
-     (SELECT Name, SUM(UnitPrice*Quantity) AS sum_total
-      FROM artist_data
-      GROUP BY Name))),
---look for InvoiceIds of customers who spent on the artist from earlier
-invoice_id_artist AS(
-  SELECT ad.InvoiceId, ad.Name
-  FROM artist_data ad
-  RIGHT JOIN name_artist na
-  ON ad.Name=na.Name),
---look for customers' names based on InvoiceIds from earlier
-customer_data AS(
-  SELECT  i.CustomerId, c.FirstName, c.LastName, i.InvoiceId, i.Total, iia.Name AS artist_name
-  FROM `chinook.customer` c
-  INNER JOIN `chinook.invoice` i
-  ON c.CustomerId=i.CustomerId 
-  INNER JOIN invoice_id_artist iia
-  ON i.InvoiceId=iia.InvoiceId),
---look for the name of the customer who spent the most
-name_customer AS(
-  SELECT artist_name, CONCAT(cd.FirstName,' ',cd.LastName) AS customer_name, SUM(Total) AS sum_customer
-  FROM customer_data cd
-  GROUP BY artist_name, customer_name
-  HAVING SUM(Total)= 
-   (SELECT MAX(sum_customer) 
-   FROM (
-    SELECT CONCAT(FirstName,' ',LastName) AS customer_name,  SUM(Total) AS         sum_customer
-    FROM customer_data
-    GROUP BY customer_name)))
-SELECT artist_name, customer_name, sum_customer
-FROM name_customer;
+WITH tbl_best_selling_artist AS(
+SELECT artist.ArtistId AS artist_id,artist.Name AS artist_name,SUM(invoiceline.UnitPrice*invoiceline.Quantity) AS total_sales
+FROM `chinook.invoiceline` invoiceline
+JOIN `chinook.track` track ON track.TrackId = invoiceline.TrackId
+JOIN `chinook.album` album ON album.AlbumId = track.AlbumId
+JOIN `chinook.artist` artist ON artist.ArtistId = album.ArtistId
+GROUP BY 1, 2
+ORDER BY 3 DESC
+LIMIT 1
+)
+SELECT bsa.artist_name,SUM(il.UnitPrice*il.Quantity) AS amount_spent,c.CustomerId,c.FirstName,c.LastName
+FROM `chinook.invoice` i
+JOIN `chinook.customer` c ON c.CustomerId = i.CustomerId
+JOIN `chinook.invoiceline` il ON il.InvoiceId = i.InvoiceId
+JOIN `chinook.track` t ON t.TrackId = il.TrackId
+JOIN `chinook.album` alb ON alb.AlbumId = t.AlbumId
+JOIN tbl_best_selling_artist bsa ON bsa.artist_id = alb.ArtistId
+GROUP BY 1,3,4,5
+ORDER BY 2 DESC;
 ```
 ###### Results
 #### Top 1 singer by earnings and the user who has spent the most on the singer
-| Name of the singer   | Name of the user      | Amount spent by the user  |
+| Name of the singer   | Name of the user      |         Amount spent      |
 | ---------------------|:---------------------:|:-------------------------:|
-| Iron Maiden          |     Mark Taylor       |               209.9       |
+| Iron Maiden          |     Mark Taylor       |              17.82        |
 ## Which genre is the most popular in each country? 
 The most popular genres are defined as the ones that were bought the most frequently.
 > ###### Query
