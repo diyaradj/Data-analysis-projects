@@ -44,7 +44,7 @@ CAST(h.hosp_patients AS FLOAT64) AS hosp_patients_new,
 CAST(h.weekly_hosp_admissions AS FLOAT64) AS weekly_hosp_admissions_new
 FROM `covid19.hospital` h;
 ```
-##### Analysis
+#### Analysis
 ##### Question 1: In which country probability of death of an infected person was the highest?
 > ###### Query
 ```
@@ -60,6 +60,10 @@ WHERE probability=(SELECT MAX(probability) FROM prob)
 ORDER BY date; 
 ```
 ###### Results
+| Country       |    Date   |  Probability  |
+| ------------- |:---------:|--------------:|
+| North Korea   |2022-05-14 |      600.0    | 
+| North Korea   |2022-05-15 |      600.0    |
 ##### Question 2: What was the percentage of infected people and the percentage of people dying from COVID-19 in each country?
 > ###### Query
 ```
@@ -80,6 +84,7 @@ ON cc.iso_code=d.iso_code
 ORDER BY prob_ill DESC; 
 ```
 ###### Results
+<a href="question 2 results.png"><img src="images for COVID-19 analysis/question 2 results.png" style="min-width: 300px"></a>
 ##### Question 3: What was the percentage of infected people and the percentage of people dying from COVID-19 in the world?
 > ###### Query
 ```
