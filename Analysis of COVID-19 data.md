@@ -206,17 +206,42 @@ LIMIT 10;
 WITH cte AS(
 SELECT r.location, c.iso_code, 
 SUM(c.new_cases) AS all_cases
-FROM `da-nfactorial.covid19.cases` c
-INNER JOIN `da-nfactorial.covid19.regions` r
+FROM `covid19.cases` c
+INNER JOIN `covid19.regions` r
 ON c.iso_code=r.iso_code
 GROUP BY c.iso_code, r.location)
 SELECT location, 
 ROUND((all_cases/d.population)*100,2) AS prob_ill, d. population_density
 FROM cte cc
-INNER JOIN `da-nfactorial.covid19.demography` d
+INNER JOIN `covid19.demography` d
 ON cc.iso_code=d.iso_code 
 ORDER BY prob_ill DESC;  
 ```
 ###### Results
+As it can be seen of the graph, there is no obvious relationship between population density and share of infected people in countries.
 <a href="relationship between population density and share of infected people in countries.png"><img src="images for COVID-19 analysis/relationship between population density and share of infected people in countries.png" style="min-width: 300px"></a>
 As described in the graph, there is no obvious relationship between population density and share of infected people in countries.
+##### Question 10: Next, I estimate how many new COVID-19 tests the United Kingdom would need to conduct in the next five days.
+Foresting method used is the same as in question #7.
+> ###### Query
+```
+WITH nfact AS 
+(SELECT t.iso_code, t.date, t.new_tests, 
+LAG(t.new_tests) OVER (PARTITION BY t.iso_code ORDER BY t.date ASC) AS lag_new_tests,
+t.new_tests/NULLIF(LAG(t.new_tests) OVER (PARTITION BY t.iso_code ORDER BY t.date ASC),0) AS Nfact,
+FROM `covid19.tests` t)
+SELECT location, nf.date, 
+AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS Nfact_AVG,  new_tests,
+new_tests*POWER(AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CURRENT ROW),1) AS forecast_for_1days,
+new_tests*POWER(AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CURRENT ROW),2) AS forecast_for_2days,
+new_tests*POWER(AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CURRENT ROW),3) AS forecast_for_3days,
+new_tests*POWER(AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CURRENT ROW),4) AS forecast_for_4days,
+new_tests*POWER(AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CURRENT ROW),5) AS forecast_for_5days
+FROM nfact nf
+LEFT JOIN `covid19.regions` r
+ON nf.iso_code=r.iso_code
+WHERE UPPER(location)='UNITED KINGDOM'
+ORDER BY nf.date DESC
+LIMIT 1; 
+forecast of new covid tests for the United Kingdom for the next 5 days 
+<a href="forecast of new covid tests for the United Kingdom for the next 5 days.png"><img src="images for COVID-19 analysis/forecast of new covid tests for the United Kingdom for the next 5 days.png" style="min-width: 300px"></a>
