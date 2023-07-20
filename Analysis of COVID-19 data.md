@@ -242,6 +242,7 @@ LEFT JOIN `covid19.regions` r
 ON nf.iso_code=r.iso_code
 WHERE UPPER(location)='UNITED KINGDOM'
 ORDER BY nf.date DESC
-LIMIT 1; 
-forecast of new covid tests for the United Kingdom for the next 5 days 
+LIMIT 1;
+```
+###### Results
 <a href="forecast of new covid tests for the United Kingdom for the next 5 days.png"><img src="images for COVID-19 analysis/forecast of new covid tests for the United Kingdom for the next 5 days.png" style="min-width: 300px"></a>
