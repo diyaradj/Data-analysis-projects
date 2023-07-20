@@ -129,6 +129,7 @@ ORDER BY diff;
 ```
 ###### Results
 <a href="question 4 results.png"><img src="images for COVID-19 analysis/question 4 results.png" style="min-width: 300px"></a>
+
 ##### Question 5: How did the number of new cases change on a daily basis in each country?
 I estimate daily percentage change in new cases and add a new variable trend which shows whether percentage change increased/decreased/didn't change.
 > ###### Query
