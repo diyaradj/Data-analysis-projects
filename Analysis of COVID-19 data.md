@@ -44,7 +44,7 @@ CAST(h.hosp_patients AS FLOAT64) AS hosp_patients_new,
 CAST(h.weekly_hosp_admissions AS FLOAT64) AS weekly_hosp_admissions_new
 FROM `covid19.hospital` h;
 ```
-#### Analysis
+### Analysis
 ##### Question 1: In which country probability of death of an infected person was the highest?
 > ###### Query
 ```
@@ -105,6 +105,10 @@ INNER JOIN `covid19.demography` d
 ON cc.iso_code=d.iso_code; 
 ```
 ###### Results
+| Total cases   | Total deaths | Total population |Probability of getting ill, %|Probability of mortality, %|
+| ------------- |:------------:|-----------------:|----------------------------:|--------------------------:|
+|  583 081 360  |   6 426 391  |  7 898 275 810   |            7.38             |             0.08          |
+
 ##### Question 4: Which countries have coped well with COVID-19 treatment?
 In this case, it is considered that a country have coped well with COVID-19 treatment if the most recent observation of the number of patients in the intensive care unit is smaller than the oldest observation of the number of patients in the intensive care unit.
 > ###### Query
@@ -124,6 +128,7 @@ WHERE row_num=1
 ORDER BY diff;
 ```
 ###### Results
+<a href="question 4 results.png"><img src="images for COVID-19 analysis/question 4 results.png" style="min-width: 300px"></a>
 ##### Question 5: How did the number of new cases change on a daily basis in each country?
 I estimate daily percentage change in new cases and add a new variable trend which shows whether percentage change increased/decreased/didn't change.
 > ###### Query
