@@ -83,7 +83,6 @@ INNER JOIN `covid19.demography` d
 ON cc.iso_code=d.iso_code 
 ORDER BY prob_ill DESC; 
 ```
-###### Results
 <a href="question 2 results.png"><img src="images for COVID-19 analysis/question 2 results.png" style="min-width: 300px"></a>
 ##### Question 3: What was the percentage of infected people and the percentage of people dying from COVID-19 in the world?
 > ###### Query
@@ -109,8 +108,8 @@ ON cc.iso_code=d.iso_code;
 | ------------- |:------------:|-----------------:|----------------------------:|--------------------------:|
 |  583 081 360  |   6 426 391  |  7 898 275 810   |            7.38             |             0.08          |
 
-##### Question 4: Which countries have coped well with COVID-19 treatment?
-In this case, it is considered that a country have coped well with COVID-19 treatment if the most recent observation of the number of patients in the intensive care unit is smaller than the oldest observation of the number of patients in the intensive care unit.
+##### Question 4: Which countries have coped well with treating COVID-19?
+In this case, it is considered that a country have coped well with COVID-19 treatment if the most recent observation for the number of patients in the intensive care unit is smaller than the earliest observation for the number of patients in the intensive care unit.
 > ###### Query
 ```
 SELECT * FROM (
@@ -127,7 +126,6 @@ ON h.iso_code=r.iso_code)
 WHERE row_num=1
 ORDER BY diff;
 ```
-###### Results
 <a href="question 4 results.png"><img src="images for COVID-19 analysis/question 4 results.png" style="min-width: 300px"></a>
 
 ##### Question 5: How did the number of new cases change on a daily basis in each country?
@@ -150,7 +148,6 @@ SELECT location, date, new_cases, lag_new_cases, rel_diff,
 FROM cte
 ORDER BY location, date; 
 ```
-###### Results
 <a href="question 5 results.png"><img src="images for COVID-19 analysis/question 5 results.png" style="min-width: 300px"></a>
 
 ##### Question 6: Which countries in the dataset had the highest mortality rate during COVID-19?
@@ -171,14 +168,13 @@ ON rc.iso_code=r.iso_code
 WHERE rn <=25
 ORDER BY rn; 
 ```
-###### Results
 <a href="question 6 results.png"><img src="images for COVID-19 analysis/question 6 results.png" style="min-width: 300px"></a>
 
 ##### Question 7: Forecasting the number of new cases for the next five days.      
-I estimate the growth factor of new cases for day N as=the number of new cases for day N/the number of new cases for day (N-1).
-For more precise estimation I take average value of the growth factor for the last 10 days.
+I estimate the growth factor of new cases for day N as the number of new cases for day N divided by the number of new cases for day (N-1).
+For more precise estimation I use average value of the growth factor for the last 10 days.
 For forecasting new cases in N days I use the following formula:
-New cases in N days=(new cases today)*(the growth factor)^N
+_New cases in N days=(new cases today)*(the growth factor)^N_
 > ###### Query
 ```
 WITH nfact AS 
@@ -197,7 +193,6 @@ new_cases*POWER(AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CU
 FROM nfact nf
 ORDER BY nf.date DESC; 
 ```
-###### Results
 <a href="question 7 results.png"><img src="images for COVID-19 analysis/question 7 results.png" style="min-width: 300px"></a>
 
 ##### Question 8: Which countries had the highest increase in the vaccination rate for COVID-19?
@@ -235,11 +230,11 @@ ON cc.iso_code=d.iso_code
 ORDER BY prob_ill DESC;  
 ```
 ###### Results
-As it can be seen of the graph, there is no obvious relationship between population density and share of infected people in countries.
+As it can be seen from the graph, there is no obvious relationship between population density and the share of infected people in countries.
 <a href="relationship between population density and share of infected people in countries.png"><img src="images for COVID-19 analysis/relationship between population density and share of infected people in countries.png" style="min-width: 300px"></a>
-As described in the graph, there is no obvious relationship between population density and share of infected people in countries.
-##### Question 10: Next, I estimate how many new COVID-19 tests the United Kingdom would need to conduct in the next five days.
-Foresting method used is the same as in question #7.
+
+##### Question 10: Next, I estimate how many new COVID-19 tests the United Kingdom would need to conduct in the next five days based on tests conducted in the previous days.
+Forecasting method is the same as the one used in question #7.
 > ###### Query
 ```
 WITH nfact AS 
