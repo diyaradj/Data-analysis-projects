@@ -3,7 +3,7 @@
 In this project I analyze data about COVID-19 from Our World in Data website using SQL quaries. 
 This dataset contains 6 tables about new cases of COVID-19, demography in countries, 
 new admissions to hospitals, locations included in the dataset, tests conducted, vaccinations. 
-All tables are connected through variables: iso_code and date.
+All tables are connected through variables: *iso_code* and *date*.
 ##### Cleaning the data
 First, I clean the data: checking for duplicates in the data, for example, in Regions table.  
 > ###### Query
@@ -14,7 +14,7 @@ FROM `covid19.regions` r
 GROUP BY r.iso_code, r.continent, r.location
 HAVING checking_dup > 1; 
 ```
-Valid iso_code consists of three characters. So I check whether there are observations with iso_code that contain more than three characters.
+Valid *iso_code* consists of three characters. So I check whether there are observations with *iso_code* that contain more than three characters.
 > ###### Query
 ```
 SELECT c.iso_code
@@ -23,7 +23,7 @@ WHERE c.iso_code NOT LIKE '___'
 GROUP BY c.iso_code; 
 ```
 ##### Results
-There are observations with code: "OWID_KOS" which is iso_code for the Republic of Kosovo. For other observations iso_code consists of three characters.
+There are observations with *iso_code*: "OWID_KOS" which is *iso_code* for the Republic of Kosovo. For other observations *iso_code* consists of three characters.
 Next, I examine countries' names and remove text in brackets that is not needed for this analysis.
 > ###### Query
 ```
@@ -35,7 +35,7 @@ FROM `covid19.regions` r
 WHERE r.location LIKE '%(%)%'
 GROUP BY r.location; 
 ```
-I also check whether data types are appropriate. In hospital table such variables as types weekly_icu_admissions, hosp_patients, weekly_hosp_admissions are STRING type, while they are numbers and should be FLOAT type. So I change the data type of these variables to FLOAT.
+I also check whether data types are appropriate. In Hospital table such variables as *weekly_icu_admissions*, *hosp_patients*, *weekly_hosp_admissions* are STRING type, while they are numbers and should be FLOAT type. So I change the data type of these variables to FLOAT.
 > ###### Query
 ```
 SELECT *, 
