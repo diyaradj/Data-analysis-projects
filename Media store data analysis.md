@@ -69,7 +69,7 @@ HAVING SUM(Total) =
      GROUP BY name));
 ```
 ###### Results
-#### Top 1 client by amount spent
+#### Top-1 client by amount spent
 | Client        | Total spent           | 
 | ------------- |:---------------------:|
 | Helena Holý   |          49.62        |
@@ -77,7 +77,8 @@ HAVING SUM(Total) =
 > ###### Query
 ```
 WITH tbl_best_selling_artist AS(
-SELECT artist.ArtistId AS artist_id,artist.Name AS artist_name,SUM(invoiceline.UnitPrice*invoiceline.Quantity) AS total_sales
+SELECT artist.ArtistId AS artist_id,artist.Name AS artist_name,
+SUM(invoiceline.UnitPrice*invoiceline.Quantity) AS total_sales
 FROM `chinook.invoiceline` invoiceline
 JOIN `chinook.track` track ON track.TrackId = invoiceline.TrackId
 JOIN `chinook.album` album ON album.AlbumId = track.AlbumId
@@ -97,7 +98,7 @@ GROUP BY 1,3,4,5
 ORDER BY 2 DESC;
 ```
 ###### Results
-#### Top 1 singer by earnings and the user who has spent the most on the singer
+#### Top-1 singer by earnings and the user who has spent the most on the singer
 | Name of the singer   | Name of the user      |         Amount spent      |
 | ---------------------|:---------------------:|:-------------------------:|
 | Iron Maiden          |     Mark Taylor       |              17.82        |
