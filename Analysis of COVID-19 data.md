@@ -3,7 +3,7 @@
 In this project I analyze data about COVID-19 from Our World in Data website using SQL quaries. 
 This dataset contains 6 tables about new cases of COVID-19, demography in countries, 
 new admissions to hospitals, locations included in the dataset, tests conducted, vaccinations. 
-All tables are connected using variables: iso_code and date.
+All tables are connected through variables: iso_code and date.
 ##### Cleaning the data
 First, I clean the data: checking for duplicates in the data, for example, in Regions table.  
 > ###### Query
