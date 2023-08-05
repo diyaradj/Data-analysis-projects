@@ -126,7 +126,7 @@ ON h.iso_code=r.iso_code)
 WHERE row_num=1
 ORDER BY diff;
 ```
-<a href="question 4 results.png"><img src="images for COVID-19 analysis/question 4 results.png" style="min-width: 300px"></a>
+<a href="question 4 results.png"><img src="images/question 4 results.png" style="min-width: 300px"></a>
 
 ##### Question 5: How did the number of new cases change on a daily basis in each country?
 I estimate daily percentage change in new cases and add a new variable trend which shows whether percentage change increased/decreased/didn't change.
@@ -148,7 +148,7 @@ SELECT location, date, new_cases, lag_new_cases, rel_diff,
 FROM cte
 ORDER BY location, date; 
 ```
-<a href="question 5 results.png"><img src="images for COVID-19 analysis/question 5 results.png" style="min-width: 300px"></a>
+<a href="question 5 results.png"><img src="images/question 5 results.png" style="min-width: 300px"></a>
 
 ##### Question 6: Which countries in the dataset had the highest mortality rate during COVID-19?
 > ###### Query
@@ -168,7 +168,7 @@ ON rc.iso_code=r.iso_code
 WHERE rn <=25
 ORDER BY rn; 
 ```
-<a href="question 6 results.png"><img src="images for COVID-19 analysis/question 6 results.png" style="min-width: 300px"></a>
+<a href="question 6 results.png"><img src="images/question 6 results.png" style="min-width: 300px"></a>
 
 ##### Question 7: Forecasting the number of new cases for the next five days.      
 I estimate the growth factor of new cases for day N as the number of new cases for day N divided by the number of new cases for day (N-1).
@@ -193,7 +193,7 @@ new_cases*POWER(AVG(Nfact) OVER(ORDER BY nf.date ROWS BETWEEN 9 PRECEDING AND CU
 FROM nfact nf
 ORDER BY nf.date DESC; 
 ```
-<a href="question 7 results.png"><img src="images for COVID-19 analysis/question 7 results.png" style="min-width: 300px"></a>
+<a href="question 7 results.png"><img src="images/question 7 results.png" style="min-width: 300px"></a>
 
 ##### Question 8: Which countries had the highest increase in the vaccination rate for COVID-19?
 > ###### Query
@@ -211,7 +211,7 @@ ORDER BY rel_diff DESC
 LIMIT 10; 
 ```
 ###### Results
-<a href="relative increase in the number of vaccinated people.png"><img src="images for COVID-19 analysis/relative increase in the number of vaccinated people.png" style="min-width: 300px"></a>
+<a href="relative increase in the number of vaccinated people.png"><img src="images/relative increase in the number of vaccinated people.png" style="min-width: 300px"></a>
 ##### Question 9: Next, I investigate whether there is relationship between population density and share of infected people in countries
 > ###### Query
 ```
@@ -231,7 +231,7 @@ ORDER BY prob_ill DESC;
 ```
 ###### Results
 As it can be seen from the graph, there is no obvious relationship between population density and the share of infected people in countries.
-<a href="relationship between population density and share of infected people in countries.png"><img src="images for COVID-19 analysis/relationship between population density and share of infected people in countries.png" style="min-width: 300px"></a>
+<a href="relationship between population density and share of infected people in countries.png"><img src="images/relationship between population density and share of infected people in countries.png" style="min-width: 300px"></a>
 
 ##### Question 10: Next, I estimate how many new COVID-19 tests the United Kingdom would need to conduct in the next five days based on tests conducted in the previous days.
 Forecasting method is the same as the one used in question #7.
@@ -257,4 +257,4 @@ ORDER BY nf.date DESC
 LIMIT 1;
 ```
 ###### Results
-<a href="forecast of new covid tests for the United Kingdom.png"><img src="images for COVID-19 analysis/forecast of new covid tests for the United Kingdom.png" style="min-width: 300px"></a>
+<a href="forecast of new covid tests for the United Kingdom.png"><img src="images/forecast of new covid tests for the United Kingdom.png" style="min-width: 300px"></a>
