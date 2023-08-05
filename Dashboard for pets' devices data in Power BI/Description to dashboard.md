@@ -25,6 +25,3 @@ One can also press on one of the breeds in the bar chart, press the button *See 
 The third page contains information about owners of pets.
   
 <a href="report page 3.png"><img src="images/report page 3.png" style="min-width: 300px"></a>  
-
-
-
