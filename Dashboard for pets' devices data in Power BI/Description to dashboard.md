@@ -1,1 +1,3 @@
+In this project, I create an interactive report in Power BI that helps a company to make business decisions. This company produces smart devices for pets, it has already created a collar for dogs. This collar allows to track daily steps, activity minutes, and heartbeat for a dog. The device for dogs got positive reviews from owners of dogs. So the company created a similar collar for cats. In order to test the smart device for cats, the company distributed one thousand collars to owners of cats.   
+The report that I created helps the company’s management team to make decision about viability of the smart device for cats. The report contains three pages: overview of the two smart devices, information about pets, and information about owners of pets.
 
