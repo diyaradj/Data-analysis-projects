@@ -8,18 +8,22 @@ The first page contains two line charts for daily steps of dogs and cats. Daily 
 Next, the report contains column chart of the average rating of the two devices. On scale of 1 to 5, rating of the device for dogs is 4.7 and is quite high. While rating of the device for cats is 1.6 and is quite low, so owners of cats are not happy with the device for cats.  
 Moreover, when asked whether they would recommend the device, 90% of dogs' device's users responded that they would recommend the device, while 90% of cats' device's users responded that they wouldn't recommend the device. Again, there is an evidence that owners of cats are not happy with the device for cats.  
 
+The second page contains information about pets and has two modes: *information about dogs* and *information about cats*. The mode can be changed with buttons at the top right corner.  
+  
 <a href="report page 2-1.png"><img src="images/report page 2-1.png" style="min-width: 300px"></a>  
-
-The second page contains mode dogs
-
+  
+First, the number of dogs that use the smart collar, average daily steps, and average activity minutes of dogs are displayed. Then there is a bar chart that displays dogs' breeds and how many dogs of each breed use the smart collar. As it can be seen from the graph, there is a variety of breeds in the sample, and there is no underrepresented or overrepresented breeds. Similarly, from the donut chart that shows breakdown of dogs by gender, it can be seen that both genders are presented in the sample.  
+Similar information can be found about cats.  
+  
 <a href="report page 2-2.png"><img src="images/report page 2-2.png" style="min-width: 300px"></a>  
-
-The second page contains mode cats  
-
-Drill through
+  
+Slicer for breed  allows a user to search and select a breed that they want to look up. And date slicer allows to filter desired period.
+One can also press on one of the breeds in the bar chart, press the button *See details for [breed]* and navigate to a drill-through page that shows: average daily steps, average weight, average age, average activity minutes, and average heartrate for a breed of a dog/cat. The button at the upper left allows to navigate back to the Pets page.  
+  
 <a href="drill through.png"><img src="images/drill through.png" style="min-width: 300px"></a>  
-
-The third page contains
+  
+The third page contains information about owners of pets.
+  
 <a href="report page 3.png"><img src="images/report page 3.png" style="min-width: 300px"></a>  
 
 
