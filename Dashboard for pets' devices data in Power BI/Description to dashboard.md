@@ -22,6 +22,6 @@ One can also press on one of the breeds in the bar chart, press the button *See 
   
 <a href="drill through.png"><img src="images/drill through.png" style="min-width: 300px"></a>  
   
-The third page contains information about owners of pets.
-  
+The third page contains information about owners of pets. First, the number of families that use the smart collars for their pets, average number of pets owned in a family, median annual household income, and median expenses on a pet in the sample are displayed. Next, there is a bubble map that shows average expenses on a pet for every state in the US: the bigger the size of the a bubble, the higher the average expenses in a state are. In addition, there is a scatter plot that shows that there is a small positive corellation between annual household income and annual expenses on a pet: the higher the income, the higher the expenses on a pet are. A user can search and select a city or state in a hierarchical slicer, filter a range for household income, select households by the number of pets they own.  
+   
 <a href="report page 3.png"><img src="images/report page 3.png" style="min-width: 300px"></a>  
