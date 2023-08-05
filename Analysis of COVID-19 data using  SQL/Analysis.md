@@ -83,7 +83,7 @@ INNER JOIN `covid19.demography` d
 ON cc.iso_code=d.iso_code 
 ORDER BY prob_ill DESC; 
 ```
-<a href="question 2 results.png"><img src="images for COVID-19 analysis/question 2 results.png" style="min-width: 300px"></a>
+<a href="question 2 results.png"><img src="images/question 2 results.png" style="min-width: 300px"></a>
 ##### Question 3: What was the percentage of infected people and the percentage of people dying from COVID-19 in the world?
 > ###### Query
 ```
