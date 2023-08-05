@@ -1,6 +1,6 @@
 # Data Analysis:
 
-In this project I analyze Chinook dataset using SQL quaries. It contains data about digital media store. This dataset has 11 tables about customers, employees, orders, artists, music genre, etc.
+In this project I analyze data about digital media store using SQL quaries. This dataset has 11 tables about customers, employees, orders, artists, music genre, etc.
 ## Which countries have the greatest number of invoices?
 
 > ###### Query
