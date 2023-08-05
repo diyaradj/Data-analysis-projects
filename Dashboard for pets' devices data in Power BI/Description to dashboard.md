@@ -27,7 +27,7 @@ The third page contains information about owners of pets. First, the number of f
 
 #### Conclusion  
 In this project I visualized data in Power BI so that management team could quickly assess the information and make business decision based on the data.  
-Main insights:
+The main insights:
 - As it can be seen from the report, there are significant differences in activity of dogs and cats with dogs having higher number of daily steps and activity minutes.
 - Tracked by the smart collar, dogs's daily steps increased in the first year and in the two consecutive years, while for cats their activity didn't change.
 - Device for dogs has a high rating, and it is recommended in 90% of the cases. On the other hand, device for cats has a low rating, and it is not recommended in the 90% of the cases.
